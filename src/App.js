@@ -9,6 +9,8 @@ class App extends Component {
       {name:"Manoj" , age:267},
       {name:"PJ" , age:28}
     ],
+    otherState: "SomeOther Value",
+    showPersons: false
   }
 
   swicthNameHandler = (newName) => {
@@ -32,6 +34,12 @@ class App extends Component {
       ]
     })
   }
+
+  togglePersonsHandler = () => {
+     const doesShow = this.state.showPersons;
+    this.setState({showPersons : !doesShow});
+  }
+
   render() {
     const style ={
       backgroundColor: 'white',
@@ -43,20 +51,25 @@ class App extends Component {
     return (
         <div className="App">
           <h1>Hi, I'm a React App</h1>
-          <button onClick={this.swicthNameHandler.bind(this, 'SunilG')}
-          style={style}>Switch Name</button>
+          <button onClick={this.togglePersonsHandler}
+          style={style}>{this.state.showPersons ? 'Hide' : 'Show'}</button>
 
+        {
+          this.state.showPersons ? 
+          <div>
           <Person   name={this.state.persons[0].name}   age={this.state.persons[0].age}/>
-          <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={() => this.swicthNameHandler('SunilGidd')}
-          changed={this.nameChangedHandler}>My Hobbie is : Racing </Person>
+            <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age}
+            click={() => this.swicthNameHandler('SunilGidd')}
+            changed={this.nameChangedHandler}>My Hobbie is : Racing </Person>
 
-          <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}
-          click={(fromChild) => this.swicthNameHandler(fromChild)}/>
+            <Person 
+            name={this.state.persons[2].name} 
+            age={this.state.persons[2].age}
+            click={(fromChild) => this.swicthNameHandler(fromChild)}/>
+        </div> : null
+        }
         
         </div>
     );
