@@ -11,12 +11,12 @@ class App extends Component {
     ],
   }
 
-  swicthNameHandler = () => {
+  swicthNameHandler = (newName) => {
     // console.log("button clicked");
     //this.state.persons[0].name = "SunilG" dont do this
     this.setState({
       persons: [
-        {name:"SunilG" , age:26},
+        {name:newName , age:26},
         {name:"Manoj" , age:267},
         {name:"PJ" , age:30}
       ]
@@ -26,19 +26,18 @@ class App extends Component {
     return (
         <div className="App">
           <h1>Hi, I'm a React App</h1>
-          <button onClick={this.swicthNameHandler}>Switch Name</button>
-          <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}/>
+          <button onClick={this.swicthNameHandler.bind(this, 'SunilG')}>Switch Name</button>
 
+          <Person   name={this.state.persons[0].name}   age={this.state.persons[0].age}/>
           <Person 
           name={this.state.persons[1].name} 
           age={this.state.persons[1].age}
-          click={this.swicthNameHandler}>My Hobbie is : Racing </Person>
+          click={() => this.swicthNameHandler('SunilGidd')}>My Hobbie is : Racing </Person>
 
           <Person 
           name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}/>
+          age={this.state.persons[2].age}
+          click={(fromChild) => this.swicthNameHandler(fromChild)}/>
         
         </div>
     );
