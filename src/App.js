@@ -16,11 +16,9 @@ class App extends Component {
 
 
   nameChangedHandler = (event, id) => {
-
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-
     //const person =  this.state.persons[personIndex];
     //nut this it will copy pointer so do not mutate state direactly
 
@@ -28,11 +26,9 @@ class App extends Component {
     const person = {
       ...this.state.persons[personIndex]
     };
-
     person.name = event.target.value;
     const persons =[...this.state.persons];
     persons[personIndex] = person;
-
     this.setState({persons: persons});
   }
 
@@ -50,13 +46,14 @@ class App extends Component {
 
   render() {
     const style ={
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font:'inherit',
       border: '1px solid blue',
       padding: '8px',
       cursor:'pointer'
     }
     let persons = null;
+
     if(this.state.showPersons){
       persons = (
         <div>
@@ -75,11 +72,24 @@ class App extends Component {
         </div>
       );
 
+      style.backgroundColor='red';
+
+    }
+
+    // let classes = ['red' , 'bold'].join(' '); // "red bold"
+
+    let classes =[];
+    if(this.state.persons.length <= 2) {
+      classes.push('red') //classes = ['red']
+    }
+    if(this.state.persons.length <=1){
+      classes.push('bold') // classes = ['red'.'bold']
     }
 
     return (
         <div className="App">
           <h1>Hi, I'm a React App</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
           <button onClick={this.togglePersonsHandler}
           style={style}>{this.state.showPersons ? 'Hide' : 'Show'}</button>
 
