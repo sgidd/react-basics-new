@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state ={
@@ -96,7 +96,8 @@ class App extends Component {
     }
 
     return (
-        <div className="App">
+        <StyleRoot>
+          <div className="App">
           <h1>Hi, I'm a React App</h1>
           <p className={classes.join(' ')}>This is really working!</p>
           <button onClick={this.togglePersonsHandler}
@@ -105,19 +106,9 @@ class App extends Component {
         { persons}
         
         </div>
+        </StyleRoot>     
     );
 
-    // return React.createElement('div' , null, 'h1', 'Hi, I\'m a React App');
-    // first arg is element tag , 2nd is configuration - style , classes , 3rd is the content or child elemnts
-    // above statement takes he as content not element
-    // h1Hi, I'm a React App
-    // so to create child element use createElement 
-
-    //return React.createElement('div' , null, React.createElement('h1', null, 'Hi, I\'m a React App!!!'));
-    //output : Hi, I'm a React App!!!
-
-    // adding classes
-    // return React.createElement('div' , {className : 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'));
   }
 }
 
