@@ -18,13 +18,14 @@ import styled from 'styled-components';
 const person = (props2) => {
 
     return (   
-        // <div className="Person" style={personStyle}>
+         <div className="Person" >
         <StyledDiv>
             <p onClick={() => props2.click('SunilGidd2')}>I'm a {props2.name} and I'am {props2.age } years old!</p>
             <p>{props2.children}</p>
             <input type="text" onChange={props2.changed} value={props2.name}/>
         </StyledDiv>
-        // </div>
+        <button className = "test">person test for global scoped</button>
+        </div>
     );
 }
 export default person;

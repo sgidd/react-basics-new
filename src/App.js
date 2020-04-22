@@ -101,6 +101,9 @@ class App extends Component {
           onClick = {this.togglePersonsHandler}>
             {this.state.showPersons ? 'Hide' : 'Show'}
           </StyledButton>
+          <button className="test">
+            App tets for global scope
+            </button>
 
         { persons}
         
