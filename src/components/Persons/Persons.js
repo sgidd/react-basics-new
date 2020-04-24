@@ -9,7 +9,7 @@ class Persons extends Component {
     }
 
     componentWillReceiveProps(props){
-        console.log('[Persons.js] componentWillReceiveProps'. props);
+        console.log('[Persons.js] componentWillReceiveProps',props);
     }
 
     shouldComponentUpdate(nextProps, nextState){
