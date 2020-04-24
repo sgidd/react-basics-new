@@ -17,7 +17,8 @@ class App extends Component {
         {id:3, name:"PJ" , age:28}
       ],
       otherState: "SomeOther Value",
-      showPersons: false
+      showPersons: false,
+      showCockpit: true
     }
   }
 
@@ -42,15 +43,16 @@ class App extends Component {
     console.log('[App.js] componentDidUpdate');
   }
 
-  state ={
-    persons :[
-      {id:1, name:"Sunil" , age:26},
-      {id:2, name:"Manoj" , age:267},
-      {id:3, name:"PJ" , age:28}
-    ],
-    otherState: "SomeOther Value",
-    showPersons: false
-  }
+  // state ={
+  //   persons :[
+  //     {id:1, name:"Sunil" , age:26},
+  //     {id:2, name:"Manoj" , age:267},
+  //     {id:3, name:"PJ" , age:28}
+  //   ],
+  //   otherState: "SomeOther Value",
+  //   showPersons: false,
+  //   showCockpit: true
+  // }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -92,13 +94,21 @@ class App extends Component {
     }
 
     return (
-        <div className={classes.App}>       
-          <Cockpit  
+        <div className={classes.App}>   
+        <button onClick={() => {
+          this.setState({showCockpit: false});
+          }}>
+            Remove Cockpit
+        </button>
+
+          { this.state.showCockpit ?  <Cockpit  
             title={this.props.appTitle}
             showPersons ={this.state.showPersons}
             persons={this.state.persons}
             togglePersons ={this.togglePersonsHandler}
-            />
+            /> : null
+          }
+          
           { persons}
         </div>
             
