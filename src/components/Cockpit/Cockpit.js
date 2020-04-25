@@ -6,35 +6,33 @@ const cockpit = props => {
   useEffect(() => {
     console.log('[Cockpit.js] 1st useEffect');
     //Http Request
-
     setTimeout(() => {
-     // alert('suppose it http req and reccieved resp at this point');
+      alert('1st');
     }, 2000);
-
     return ()=>{
       console.log('[cockpit.js] clean up 1st useEffect');
     }
   }); // this will run on every render cycle
 
-
   useEffect(() => {
-
     console.log('[Cockpit.js] 2nd useEffect');
-
-    setTimeout(() => {
-      //alert('Runs only one time when component is rendered for the first time');
+    const timer = setTimeout(() => {
+      alert('2nd');
     }, 2000);
 
     return ()=> {
+       clearTimeout(timer);
       console.log('[cockpit.js] clean up 2nd useEffect');
     }
-
   }, []);
 
-    //To limit it to only run when persons array is modified and component renderd first time
-    useEffect(() => {
-      console.log('[Cockpit.js] 3rd useEffect');
+  //To limit it to only run when persons array is modified and component renderd first time
+  useEffect(() => {
+    console.log('[Cockpit.js] 3rd useEffect');
 
+    setTimeout(() => {
+      alert('3rd');
+    }, 2000);
       return ()=> {
         console.log('[cockpit.js] clean up 3rd useEffect');
       }
