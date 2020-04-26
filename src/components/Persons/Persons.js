@@ -3,10 +3,10 @@ import Person from './Person/Person';
 
 class Persons extends Component {
 
-    static getDerivedStateFromProps(props, state){
-        console.log('[Persons.js] getDerivedStateFromProps');
-        return state;
-    }
+    // static getDerivedStateFromProps(props, state){
+    //     console.log('[Persons.js] getDerivedStateFromProps');
+    //     return state;
+    // }
 
     componentWillReceiveProps(props){
         console.log('[Persons.js] componentWillReceiveProps',props);
@@ -14,8 +14,15 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState){
         console.log('[Persons.js] shouldComponentUpdate');
-        if(nextProps.persons !== this.props.persons) return true;
-        else return false;
+        if(nextProps.persons !== this.props.persons  
+        //    || nextProps.changed !== this.props.changed||
+        //     nextProps.clicked !== this.props.clicked
+            ) {
+                return true;
+            }
+        else {
+            return false;
+        }
     }
 
     render(){
