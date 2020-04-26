@@ -27,16 +27,16 @@ const cockpit = props => {
   }, []);
 
   //To limit it to only run when persons array is modified and component renderd first time
-  useEffect(() => {
-    console.log('[Cockpit.js] 3rd useEffect');
+  // useEffect(() => {
+  //   console.log('[Cockpit.js] 3rd useEffect');
 
-    setTimeout(() => {
-      alert('3rd');
-    }, 2000);
-      return ()=> {
-        console.log('[cockpit.js] clean up 3rd useEffect');
-      }
-    }, [props.persons]);
+  //   setTimeout(() => {
+  //     alert('3rd');
+  //   }, 2000);
+  //     return ()=> {
+  //       console.log('[cockpit.js] clean up 3rd useEffect');
+  //     }
+  //   }, [props.persons]);
 
     let assignedClasses =[];
     let btnClass ='';
@@ -47,10 +47,10 @@ const cockpit = props => {
         btnClass = classes.Red;
     }
 
-    if(props.persons.length <= 2) {
+    if(props.personsLength <= 2) {
       assignedClasses.push(classes.red) //classes = ['red']
     }
-    if(props.persons.length <=1){
+    if(props.personsLength <=1){
       assignedClasses.push(classes.bold) // classes = ['red'.'bold']
     }
 
@@ -66,4 +66,4 @@ const cockpit = props => {
     );
 }
 
-export default cockpit;
+export default React.memo(cockpit);
