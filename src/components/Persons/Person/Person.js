@@ -3,7 +3,7 @@ import classes from './Person.css';
 import Aux from '../../../hoc/Auxillary';
 import anotherWithClass from '../../../hoc/anotherWithClass';
 // import {Aux} from '../../../hoc/Auxillary';
-
+import PropTypes from 'prop-types';
 class Person extends Component {
 
     render(){
@@ -43,4 +43,12 @@ class Person extends Component {
 
     }
 }
+
+Person.propTypes = {
+    click: PropTypes.func,
+    changed: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number
+}
+
 export default anotherWithClass(Person, classes.Person);

@@ -81,7 +81,7 @@ class App extends Component {
         persons: persons, 
         changeCounter: prevState.changeCounter +1
       }
-    })
+    });
   }
 
   togglePersonsHandler = () => {
