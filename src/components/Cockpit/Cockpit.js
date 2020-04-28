@@ -1,7 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = props => {
+
+  const toggleBtnRef = useRef(null);
+  // toggleBtnRef.current.click(); //dont access immdiately as react have not executed the return block yet
 
   useEffect(() => {
     console.log('[Cockpit.js] 1st useEffect');
@@ -16,12 +19,11 @@ const cockpit = props => {
 
   useEffect(() => {
     console.log('[Cockpit.js] 2nd useEffect');
-    const timer = setTimeout(() => {
-      alert('2nd');
-    }, 2000);
-
-    return ()=> {
-       clearTimeout(timer);
+   
+    //will access here as we only need to run click on first load - 
+    //this useEffect runs only once afetr first render
+    toggleBtnRef.current.click();
+    return ()=> {  
       console.log('[cockpit.js] clean up 2nd useEffect');
     }
   }, []);
@@ -59,6 +61,7 @@ const cockpit = props => {
              <h1>{props.title}</h1>
                 <p className={assignedClasses.join(' ')}>This is really working!</p>
                 <button className={btnClass}
+                ref={toggleBtnRef}
                 onClick = {props.togglePersons}>
                     {props.showPersons ? 'Hide' : 'Show'}
                 </button>
