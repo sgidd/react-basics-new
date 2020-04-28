@@ -19,7 +19,8 @@ class App extends Component {
       ],
       otherState: "SomeOther Value",
       showPersons: false,
-      showCockpit: true
+      showCockpit: true,
+      changeCounter: 0
     }
   }
 
@@ -69,7 +70,18 @@ class App extends Component {
     person.name = event.target.value;
     const persons =[...this.state.persons];
     persons[personIndex] = person;
-    this.setState({persons: persons});
+
+    //This is incorrect way of updating state when depending on old state as it does
+    //not provide gurantee of latest value
+    // this.setState({persons: persons, changeCounter: this.state.changeCounter +1});
+
+    //Better way to do 
+    this.setState((prevState, props) => {
+      return {
+        persons: persons, 
+        changeCounter: prevState.changeCounter +1
+      }
+    })
   }
 
   togglePersonsHandler = () => {
