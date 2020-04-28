@@ -1,10 +1,15 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import classes from './Cockpit.css';
 import AuthContext from '../../context/auth-context';
+
 const cockpit = props => {
 
   const toggleBtnRef = useRef(null);
   // toggleBtnRef.current.click(); //dont access immdiately as react have not executed the return block yet
+
+  const authContext = useContext(AuthContext);
+
+  console.log(authContext.authenticated);
 
   useEffect(() => {
     console.log('[Cockpit.js] 2nd useEffect');
@@ -40,9 +45,11 @@ const cockpit = props => {
                 onClick = {props.togglePersons}>
                     {props.showPersons ? 'Hide' : 'Show'}
                 </button>
-                <AuthContext.Consumer>
+                {/* <AuthContext.Consumer>
                  {(context) => <button onClick={context.login}>Log in</button>}
-                </AuthContext.Consumer>
+                </AuthContext.Consumer> */}
+
+              <button onClick={authContext.login}>Log in</button>
         </div>
     );
 }
